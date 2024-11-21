@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const db = require('./db/index');
-const { REGISTER, SELECT_QUERY, LOGIN, USER_ID_URI, PORT, USERNAME_URI } = require('./constants');
+const { REGISTER, SELECT_QUERY, LOGIN, USER_ID_URI, PORT, USERNAME_URI, UPDATE_USER_URI } = require('./constants');
 const { authenticateToken } = require('./utils');
 require('dotenv').config();
 
@@ -46,7 +46,7 @@ app.post(LOGIN, async (req, res) => {
     }
 });
 
-app.put(USER_ID_URI, authenticateToken, async (req, res) => {
+app.put(UPDATE_USER_URI, authenticateToken, async (req, res) => {
     try {
         const userId = req.params.id;
         const { username } = req.body;
